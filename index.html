@@ -7,10 +7,10 @@
     <meta name="description" content="Premium Domain for Sale. The ultimate brand for AGI, Synthetic Data, and Digital Twin technologies.">
     
     <!-- Fonts & Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS (via CDN for immediate styling) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -30,13 +30,12 @@
                         mono: ['Space Mono', 'monospace'],
                     },
                     animation: {
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 3s infinite',
                     },
                     keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
+                        'pulse-glow': {
+                            '0%, 100%': { boxShadow: '0 0 5px rgba(0, 240, 255, 0.2)' },
+                            '50%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.6)' },
                         }
                     }
                 }
@@ -51,7 +50,6 @@
             overflow-x: hidden;
         }
         
-        /* Grid Background Effect */
         .bg-grid {
             background-size: 50px 50px;
             background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
@@ -60,18 +58,27 @@
             -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
         }
 
-        .glow-text {
-            text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
-        }
-        
         .glass-panel {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        /* Toast Notification Animation */
+        #toast {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.5s, transform 0.5s;
+            transform: translateY(20px) translateX(-50%);
+        }
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0) translateX(-50%);
+        }
     </style>
 </head>
-<body class="antialiased selection:bg-brand-accent selection:text-brand-black">
+<body class="antialiased selection:bg-brand-accent selection:text-brand-black flex flex-col min-h-screen">
 
     <!-- Background Effects -->
     <div class="fixed inset-0 z-0 pointer-events-none">
@@ -81,18 +88,18 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="relative z-10 container mx-auto px-6 py-8 flex justify-between items-center">
-        <div class="font-mono text-xl tracking-tighter font-bold text-white">
+    <nav class="relative z-50 container mx-auto px-6 py-8 flex justify-between items-center">
+        <div class="font-mono text-xl tracking-tighter font-bold text-white select-none">
             HUMAN<span class="text-brand-accent">EMULATOR</span>.AI
         </div>
-        <a href="mailto:joshua369x@gmail.com" class="text-sm font-mono hover:text-brand-accent transition-colors">
-            <i class="fa-regular fa-envelope mr-2"></i>Inquire
-        </a>
+        <button onclick="handleEmailClick(event)" class="text-sm font-mono text-gray-400 hover:text-brand-accent transition-colors cursor-pointer z-50">
+            <i class="fa-regular fa-envelope mr-2"></i>Contact
+        </button>
     </nav>
 
     <!-- Hero Section -->
-    <main class="relative z-10 container mx-auto px-6 pt-20 pb-32 text-center">
-        <div class="inline-block px-4 py-1 mb-6 border border-brand-accent/30 rounded-full bg-brand-accent/5">
+    <main class="relative z-10 container mx-auto px-6 pt-16 pb-24 text-center flex-grow">
+        <div class="inline-block px-4 py-1 mb-8 border border-brand-accent/30 rounded-full bg-brand-accent/5 backdrop-blur-sm">
             <span class="font-mono text-xs text-brand-accent tracking-widest uppercase">Premium Domain Asset</span>
         </div>
         
@@ -102,60 +109,57 @@
         </h1>
         
         <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
-            In the era of AGI, the most valuable technology will be the one that perfectly simulates human cognition and behavior. 
+            In the era of AGI, the most valuable technology will be the one that perfectly simulates human cognition. 
             <span class="text-white font-medium">HumanEmulator.ai</span> is the definitive brand for Synthetic Data, Digital Twins, and AI Alignment.
         </p>
 
         <!-- CTA Buttons -->
-        <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+        <div class="flex flex-col md:flex-row justify-center items-center gap-6 relative z-20">
+            <!-- Buy Button -->
             <a href="https://www.spaceship.com/s/buy/humanemulator.ai/xSyaoSQ98NTZGEtx" target="_blank" 
-               class="group relative px-8 py-4 bg-white text-black font-bold text-lg rounded-none hover:bg-brand-accent transition-all duration-300 w-full md:w-auto overflow-hidden">
+               class="group relative px-8 py-4 bg-white text-black font-bold text-lg rounded-none hover:bg-brand-accent transition-all duration-300 w-full md:w-auto overflow-hidden animate-pulse-glow">
                 <span class="relative z-10 flex items-center justify-center gap-2">
-                    Acquire Now <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    Acquire Asset <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                 </span>
             </a>
-            <a href="mailto:joshua369x@gmail.com" 
-               class="px-8 py-4 border border-white/20 hover:border-white/60 text-white font-mono text-lg rounded-none transition-all duration-300 w-full md:w-auto">
-                Make an Offer
-            </a>
+            
+            <!-- Email Button (Fixed) -->
+            <button onclick="handleEmailClick(event)"
+               class="px-8 py-4 border border-white/20 hover:border-brand-accent hover:text-brand-accent hover:bg-brand-accent/10 text-white font-mono text-lg rounded-none transition-all duration-300 w-full md:w-auto cursor-pointer z-20 flex items-center justify-center gap-2">
+               <i class="fa-regular fa-paper-plane"></i> Make an Offer
+            </button>
         </div>
     </main>
 
     <!-- Value Propositions -->
     <section class="relative z-10 container mx-auto px-6 py-20 border-t border-white/5">
         <div class="grid md:grid-cols-3 gap-12 text-left">
-            <!-- Feature 1 -->
-            <div class="glass-panel p-8 hover:border-brand-accent/50 transition-colors duration-300">
-                <i class="fa-solid fa-brain text-4xl text-brand-accent mb-6"></i>
+            <div class="glass-panel p-8 hover:border-brand-accent/50 transition-colors duration-300 group">
+                <i class="fa-solid fa-brain text-4xl text-brand-accent mb-6 group-hover:scale-110 transition-transform"></i>
                 <h3 class="text-xl font-bold text-white mb-3">AGI Alignment</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    The ultimate domain for platforms dedicated to aligning Artificial General Intelligence with human values through advanced simulation.
-                </p>
+                <p class="text-gray-400 text-sm leading-relaxed">The ultimate domain for aligning Artificial General Intelligence with human values.</p>
             </div>
             
-            <!-- Feature 2 -->
-            <div class="glass-panel p-8 hover:border-brand-secondary/50 transition-colors duration-300">
-                <i class="fa-solid fa-dna text-4xl text-brand-secondary mb-6"></i>
+            <div class="glass-panel p-8 hover:border-brand-secondary/50 transition-colors duration-300 group">
+                <i class="fa-solid fa-dna text-4xl text-brand-secondary mb-6 group-hover:scale-110 transition-transform"></i>
                 <h3 class="text-xl font-bold text-white mb-3">Digital Twins</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    Perfect for medical research, metaverse identity, or biological emulation startups looking for an authoritative web presence.
-                </p>
+                <p class="text-gray-400 text-sm leading-relaxed">Identity infrastructure for the metaverse and biological emulation startups.</p>
             </div>
 
-            <!-- Feature 3 -->
-            <div class="glass-panel p-8 hover:border-white/50 transition-colors duration-300">
-                <i class="fa-solid fa-vr-cardboard text-4xl text-white mb-6"></i>
+            <div class="glass-panel p-8 hover:border-white/50 transition-colors duration-300 group">
+                <i class="fa-solid fa-database text-4xl text-white mb-6 group-hover:scale-110 transition-transform"></i>
                 <h3 class="text-xl font-bold text-white mb-3">Synthetic Data</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
-                    "Human Emulation" is the key to training AI models without privacy violations. Own the category-defining keyword.
-                </p>
+                <p class="text-gray-400 text-sm leading-relaxed">"Human Emulation" is the key to training AI models without privacy violations.</p>
             </div>
         </div>
     </section>
 
     <!-- Pricing Section -->
     <section class="relative z-10 container mx-auto px-6 py-24">
-        <div class="max-w-4xl mx-auto glass-panel p-10 md:p-16 text-center border-brand-accent/20 border">
+        <div class="max-w-4xl mx-auto glass-panel p-10 md:p-16 text-center border-brand-accent/20 border relative overflow-hidden">
+            <!-- Decorative corner -->
+            <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-brand-accent/10 to-transparent"></div>
+
             <h2 class="text-3xl font-bold text-white mb-2">Acquisition Details</h2>
             <p class="text-gray-500 font-mono text-sm mb-12">SECURE THIS ASSET BEFORE THE MARKET MOVES</p>
 
@@ -163,18 +167,18 @@
                 <div class="text-left space-y-2">
                     <p class="text-gray-400 text-sm uppercase tracking-widest">Buy It Now Price</p>
                     <div class="text-5xl font-bold text-white font-mono">$42,000 <span class="text-lg text-gray-500 font-sans font-normal">USD</span></div>
-                    <p class="text-brand-accent text-sm mt-2"><i class="fa-solid fa-check-circle mr-1"></i> Escrow Secured</p>
+                    <p class="text-brand-accent text-sm mt-2 flex items-center"><i class="fa-solid fa-shield-halved mr-2"></i> Escrow Secured</p>
                 </div>
 
                 <div class="text-left border-l border-white/10 pl-0 md:pl-12 space-y-4">
                     <div class="bg-white/5 p-4 rounded border border-white/5">
                         <p class="text-white font-bold mb-1"><i class="fa-solid fa-layer-group mr-2 text-brand-secondary"></i>Flexible Financing</p>
                         <p class="text-gray-400 text-sm">
-                            Available in <strong>7 monthly installments</strong> via Spaceship/Escrow. Own the future without upfront capital strain.
+                            Available in <strong>7 monthly installments</strong> via Spaceship. Own the future without upfront capital strain.
                         </p>
                     </div>
                     
-                    <a href="https://www.spaceship.com/s/buy/humanemulator.ai/xSyaoSQ98NTZGEtx" target="_blank" class="block w-full py-3 bg-brand-accent text-black font-bold text-center hover:bg-white transition-colors">
+                    <a href="https://www.spaceship.com/s/buy/humanemulator.ai/xSyaoSQ98NTZGEtx" target="_blank" class="block w-full py-3 bg-brand-accent text-black font-bold text-center hover:bg-white transition-colors relative z-20">
                         Proceed to Checkout
                     </a>
                 </div>
@@ -183,16 +187,57 @@
     </section>
 
     <!-- Footer -->
-    <footer class="relative z-10 border-t border-white/10 py-12 bg-black">
+    <footer class="relative z-10 border-t border-white/10 py-12 bg-black mt-auto">
         <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center opacity-60">
             <div class="font-mono text-sm">
                 &copy; 2026 HumanEmulator.ai
             </div>
-            <div class="mt-4 md:mt-0 font-mono text-sm">
-                Contact: <a href="mailto:joshua369x@gmail.com" class="text-brand-accent hover:underline">joshua369x@gmail.com</a>
+            <div class="mt-4 md:mt-0 font-mono text-sm flex items-center gap-2">
+                <span>Contact:</span>
+                <button onclick="handleEmailClick(event)" class="text-brand-accent hover:underline cursor-pointer">joshua369x@gmail.com</button>
             </div>
         </div>
     </footer>
 
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-10 left-1/2 bg-brand-secondary text-white px-6 py-3 rounded shadow-lg border border-white/20 z-50 flex items-center gap-3">
+        <i class="fa-solid fa-check-circle text-brand-accent"></i>
+        <span>Email copied to clipboard! Opening mail client...</span>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        function handleEmailClick(e) {
+            e.preventDefault();
+            const email = "joshua369x@gmail.com";
+            
+            // 1. Copy to clipboard
+            navigator.clipboard.writeText(email).then(() => {
+                showToast();
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                // Fallback if clipboard fails, still show toast but different text if needed
+                showToast();
+            });
+
+            // 2. Open Mailto (delayed slightly to allow toast to be seen)
+            setTimeout(() => {
+                window.location.href = "mailto:" + email;
+            }, 500);
+        }
+
+        function showToast() {
+            const toast = document.getElementById("toast");
+            toast.className = "fixed bottom-10 left-1/2 bg-brand-dark text-white px-6 py-3 rounded shadow-[0_0_15px_rgba(112,0,255,0.5)] border border-brand-secondary z-50 flex items-center gap-3 show font-mono text-sm";
+            
+            setTimeout(() => {
+                toast.className = toast.className.replace("show", "");
+                // Reset to hidden state classes
+                setTimeout(() => {
+                    toast.className = "fixed bottom-10 left-1/2 bg-brand-secondary text-white px-6 py-3 rounded shadow-lg border border-white/20 z-50 flex items-center gap-3"; 
+                }, 500);
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
