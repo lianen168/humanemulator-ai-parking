@@ -3,681 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HumanEmulator.ai | The Frontier of Human-Like AI Agents</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>HumanEmulator.ai | The Future of AGI Simulation</title>
+    <meta name="description" content="Premium Domain for Sale. The ultimate brand for AGI, Synthetic Data, and Digital Twin technologies.">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (via CDN for immediate styling) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#050505',
+                            dark: '#0a0a0a',
+                            accent: '#00f0ff', // Cyberpunk Cyan
+                            secondary: '#7000ff', // Deep Purple
+                            text: '#e0e0e0'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --primary: #0ef0f9;
-            --primary-dark: #08bcc4;
-            --secondary: #ff00ff;
-            --secondary-dark: #cc00cc;
-            --dark: #0a0a1a;
-            --darker: #050510;
-            --light: #f0f8ff;
-            --gray: #a0a0c0;
-            --card-bg: rgba(10, 20, 40, 0.7);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: 'Exo 2', sans-serif;
-            background-color: var(--darker);
-            color: var(--light);
-            line-height: 1.6;
+            background-color: #050505;
+            color: #e0e0e0;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(14, 240, 249, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.05) 0%, transparent 20%);
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* Grid Background Effect */
+        .bg-grid {
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
         }
         
-        /* Header Styles */
-        header {
-            padding: 30px 0;
-            border-bottom: 1px solid rgba(14, 240, 249, 0.2);
-            position: relative;
-            z-index: 100;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .logo-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            text-shadow: 0 0 10px var(--primary);
-            animation: pulse 3s infinite alternate;
-        }
-        
-        .logo-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 900;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: 1px;
-        }
-        
-        .tagline {
-            font-family: 'Exo 2', sans-serif;
-            font-size: 1.1rem;
-            color: var(--gray);
-            margin-top: 5px;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 80px 0 60px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .hero-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .hero-title span {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            position: relative;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.4rem;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            color: var(--gray);
-            font-weight: 300;
-        }
-        
-        .tech-philosophy {
-            display: inline-block;
-            padding: 12px 25px;
-            border: 1px solid var(--primary);
-            border-radius: 50px;
-            color: var(--primary);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            letter-spacing: 2px;
-            margin-bottom: 40px;
-            position: relative;
-            overflow: hidden;
-            background: rgba(14, 240, 249, 0.05);
-        }
-        
-        .tech-philosophy:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(14, 240, 249, 0.2), transparent);
-            transition: 0.5s;
-        }
-        
-        .tech-philosophy:hover:before {
-            left: 100%;
-        }
-        
-        /* Definition Section */
-        .definition {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 40px;
-            margin: 60px 0;
-            border: 1px solid rgba(14, 240, 249, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .definition:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
-        }
-        
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .section-title i {
-            font-size: 1.8rem;
-        }
-        
-        .term-breakdown {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .term-card {
-            background: rgba(5, 10, 20, 0.7);
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 3px solid var(--primary);
-        }
-        
-        .term-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--light);
-        }
-        
-        .term-desc {
-            color: var(--gray);
-            font-size: 1.1rem;
-        }
-        
-        .philosophical {
-            background: rgba(5, 10, 20, 0.7);
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 3px solid var(--secondary);
-            margin-top: 20px;
-        }
-        
-        /* Applications Section */
-        .applications {
-            margin: 80px 0;
-        }
-        
-        .applications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .app-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .app-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(14, 240, 249, 0.1);
-            border-color: rgba(14, 240, 249, 0.3);
-        }
-        
-        .app-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .app-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--light);
-        }
-        
-        .app-desc {
-            color: var(--gray);
-            margin-bottom: 20px;
-            font-size: 1.05rem;
-        }
-        
-        .rating {
-            display: flex;
-            margin-top: 15px;
-        }
-        
-        .star {
-            color: var(--primary);
-            margin-right: 3px;
-        }
-        
-        /* Valuation Section */
-        .valuation {
-            margin: 80px 0;
-        }
-        
-        .valuation-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .value-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .value-card:nth-child(2) {
-            border-color: rgba(14, 240, 249, 0.3);
-            transform: scale(1.05);
-        }
-        
-        .value-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--light);
-        }
-        
-        .value-amount {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin: 20px 0;
-            color: var(--primary);
-        }
-        
-        .value-desc {
-            color: var(--gray);
-        }
-        
-        /* Contact Section */
-        .contact {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 50px;
-            margin: 80px 0;
-            text-align: center;
-            border: 1px solid rgba(14, 240, 249, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .contact:before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(14, 240, 249, 0.05) 0%, transparent 70%);
-            z-index: -1;
-        }
-        
-        .contact-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .contact-desc {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            color: var(--gray);
-        }
-        
-        .price-info {
-            background: rgba(5, 10, 20, 0.8);
-            display: inline-block;
-            padding: 20px 40px;
-            border-radius: 10px;
-            margin: 30px 0;
-            border: 1px solid rgba(14, 240, 249, 0.2);
-        }
-        
-        .price {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-        
-        .payment-plan {
-            color: var(--gray);
-            font-size: 1.1rem;
-        }
-        
-        .email {
-            font-size: 1.8rem;
-            color: var(--light);
-            margin: 30px 0;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
-            word-break: break-all;
-        }
-        
-        .email a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .email a:hover {
-            color: var(--secondary);
-            text-decoration: underline;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 18px 40px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--darker);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 50px;
-            letter-spacing: 1.5px;
-            margin-top: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(14, 240, 249, 0.3);
-        }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-        
-        .footer-logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        /* Animations */
-        @keyframes pulse {
-            0% { text-shadow: 0 0 10px var(--primary); }
-            100% { text-shadow: 0 0 20px var(--primary), 0 0 30px var(--primary); }
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .floating {
-            animation: float 5s ease-in-out infinite;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .section-title {
-                font-size: 1.7rem;
-            }
-            
-            .term-breakdown, .applications-grid, .valuation-cards {
-                grid-template-columns: 1fr;
-            }
-            
-            .value-card:nth-child(2) {
-                transform: none;
-            }
-            
-            .contact {
-                padding: 30px 20px;
-            }
-            
-            .email {
-                font-size: 1.4rem;
-            }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <div class="logo">
-                <div class="logo-icon"><i class="fas fa-brain"></i></div>
-                <div>
-                    <div class="logo-text">HumanEmulator.ai</div>
-                    <div class="tagline">BEYOND AGENT. BEYOND HUMAN.</div>
-                </div>
-            </div>
-        </header>
+<body class="antialiased selection:bg-brand-accent selection:text-brand-black">
 
-        <!-- Hero Section -->
-        <section class="hero">
-            <h1 class="hero-title">The Frontier of <span>Human-Like AI</span></h1>
-            <p class="hero-subtitle">A framework for building AI agents with human-like cognition, emotion, and social behavior — not to replace humans, but to understand and augment them.</p>
-            <div class="tech-philosophy">TECHNICAL TENSION × PHILOSOPHICAL DEPTH</div>
-            
-            <div class="definition">
-                <h2 class="section-title"><i class="fas fa-search"></i> Definition & Core Meaning</h2>
-                <div class="term-breakdown">
-                    <div class="term-card">
-                        <h3 class="term-title">Human</h3>
-                        <p class="term-desc">Cognition, emotion, behavior, creativity, moral judgment - the complete spectrum of human experience and psychology.</p>
-                    </div>
-                    <div class="term-card">
-                        <h3 class="term-title">Emulator</h3>
-                        <p class="term-desc">In computing, a system that reproduces the behavior of another system with high fidelity (e.g., game emulators, CPU emulators).</p>
-                    </div>
-                </div>
-                <div class="philosophical">
-                    <h3 class="term-title">Synthesized Meaning</h3>
-                    <p class="term-desc">"A system capable of simulating the entirety or specific aspects of human mental and behavioral characteristics." This is not just another chatbot, but a high-fidelity model of human behavior—including emotional fluctuations, decision biases, linguistic styles, social habits, and even 'irrational' traits.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Applications Section -->
-        <section class="applications">
-            <h2 class="section-title"><i class="fas fa-bullseye"></i> Optimal Application Domains</h2>
-            <div class="applications-grid">
-                <div class="app-card floating">
-                    <div class="app-icon"><i class="fas fa-robot"></i></div>
-                    <h3 class="app-title">Advanced AI Agent Platform</h3>
-                    <p class="app-desc">Build interactive AI individuals with long-term memory, evolving emotions, and personality development for companionship, collaboration, or role-playing.</p>
-                    <div class="rating">
-                        <span class="star"><i class="fas fa-star"></i></span>
-                        <span class="star"><i class="fas fa-star"></i></span>
-                        <span class="star"><i class="fas fa-star"></i></span>
-                        <span class="star"><i class="fas fa-star"></i></span>
-                        <span class="star"><i class="fas fa-star"></i></span>
-                    </div>
-                </div>
-                
-                <div class="app-card">
-                    <div class="app-icon"><i class="fas fa-brain"></i></div>
-                    <h3 class="app-title">Cognitive Science & Psychology</h3>
-                    <p class="app-desc">Model human decision-making processes, behavioral patterns in mental health conditions, and social dynamics in groups.</p>
-                    <div class="rating">
-                        <span class="star"><i class="fas fa-star"></i></span>
-                        <span class="star"><i class="fas fa-star"></i></span>
-                        <span class="star"><i class="fas fa-star"></i></span>
-                        <span class="star"><i class="fas fa-star"></i></span>
-                        <span class="star"><i class="far fa-star"></i></span>
-                    </div>
-                </div>
-                
-                <div class="app-card floating">
-                    <div class="app-icon"><i class="fas fa-user-tie"></i></div>
-                    <h3 class="app-title">Virtual Human / Digital Employee Engine</h3>
-                    <p class="app-desc">Enterprise-grade virtual customer service agents, hosts, and sales representatives that go beyond scripted responses to exhibit human-like reactions.</p>
-                    <div class="rating">
-                        <span class="star"><i class="fas fa-star"></i></span>
-                        <span class="star"><i class="fas fa-star"></i></span>
-                        <span class="star"><i class="fas fa-star"></i></span>
-                        <span class="star"><i class="fas fa-star"></i></span>
-                        <span class="star"><i class="far fa-star"></i></span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Valuation Section -->
-        <section class="valuation">
-            <h2 class="section-title"><i class="fas fa-chart-line"></i> Strategic Valuation</h2>
-            <div class="valuation-cards">
-                <div class="value-card">
-                    <h3 class="value-title">Domain Investment Sale</h3>
-                    <div class="value-amount">$5K - $15K</div>
-                    <p class="value-desc">Target buyers: AI/simulation entrepreneurs. Medium liquidity with immediate ROI potential.</p>
-                </div>
-                
-                <div class="value-card">
-                    <h3 class="value-title">Project Development</h3>
-                    <div class="value-amount">>$100K</div>
-                    <p class="value-desc">Potential brand value if developed into a successful AI Agent platform. The domain becomes a core asset.</p>
-                </div>
-                
-                <div class="value-card">
-                    <h3 class="value-title">Acquisition by AI Company</h3>
-                    <div class="value-amount">$20K+</div>
-                    <p class="value-desc">Strategic purchase by digital human companies like Character.ai, Inworld AI, or similar entities.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="contact">
-            <h2 class="contact-title">Acquire HumanEmulator.ai</h2>
-            <p class="contact-desc">This is a "domain engineers respect, philosophers contemplate, and entrepreneurs desire." It's not for the mass consumer market, but within the three explosive sectors of AI personification, digital twins, and cognitive simulation, it possesses the DNA to become a benchmark brand.</p>
-            
-            <div class="price-info">
-                <div class="price">$42,000</div>
-                <div class="payment-plan">Flexible payment plan: 7 installments available</div>
-            </div>
-            
-            <div class="email">
-                Contact: <a href="mailto:joshua369x@gmail.com">joshua369x@gmail.com</a>
-            </div>
-            
-            <a href="mailto:joshua369x@gmail.com?subject=HumanEmulator.ai Inquiry" class="cta-button">
-                <i class="fas fa-paper-plane"></i> INITIATE ACQUISITION
-            </a>
-            
-            <p style="margin-top: 40px; font-size: 0.9rem; color: var(--gray);">
-                Ideal for: AI Agent startups, cognitive modeling labs (MIT Media Lab, DeepMind), virtual human technology providers.
-            </p>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <div class="footer-logo">HumanEmulator.ai</div>
-            <p>© 2023 HumanEmulator.ai | The AGI-era Human Simulator | Not just an agent, but a mirror to humanity.</p>
-            <p style="margin-top: 15px; font-size: 0.8rem;">This domain represents the convergence of technical precision and philosophical depth in the emerging field of human-like AI simulation.</p>
-        </footer>
+    <!-- Background Effects -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute inset-0 bg-grid h-[80vh]"></div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-brand-secondary/20 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-brand-accent/10 rounded-full blur-[100px]"></div>
     </div>
 
-    <script>
-        // Add some interactive effects
-        document.addEventListener('DOMContentLoaded', function() {
-            // Make app cards interactive
-            const appCards = document.querySelectorAll('.app-card');
-            appCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-10px)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    if(!this.classList.contains('floating')) {
-                        this.style.transform = 'translateY(0)';
-                    }
-                });
-            });
+    <!-- Navigation -->
+    <nav class="relative z-10 container mx-auto px-6 py-8 flex justify-between items-center">
+        <div class="font-mono text-xl tracking-tighter font-bold text-white">
+            HUMAN<span class="text-brand-accent">EMULATOR</span>.AI
+        </div>
+        <a href="mailto:joshua369x@gmail.com" class="text-sm font-mono hover:text-brand-accent transition-colors">
+            <i class="fa-regular fa-envelope mr-2"></i>Inquire
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="relative z-10 container mx-auto px-6 pt-20 pb-32 text-center">
+        <div class="inline-block px-4 py-1 mb-6 border border-brand-accent/30 rounded-full bg-brand-accent/5">
+            <span class="font-mono text-xs text-brand-accent tracking-widest uppercase">Premium Domain Asset</span>
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-tight">
+            The Interface Between <br/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500">Biology & Silicon</span>
+        </h1>
+        
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+            In the era of AGI, the most valuable technology will be the one that perfectly simulates human cognition and behavior. 
+            <span class="text-white font-medium">HumanEmulator.ai</span> is the definitive brand for Synthetic Data, Digital Twins, and AI Alignment.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+            <a href="https://www.spaceship.com/s/buy/humanemulator.ai/xSyaoSQ98NTZGEtx" target="_blank" 
+               class="group relative px-8 py-4 bg-white text-black font-bold text-lg rounded-none hover:bg-brand-accent transition-all duration-300 w-full md:w-auto overflow-hidden">
+                <span class="relative z-10 flex items-center justify-center gap-2">
+                    Acquire Now <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </span>
+            </a>
+            <a href="mailto:joshua369x@gmail.com" 
+               class="px-8 py-4 border border-white/20 hover:border-white/60 text-white font-mono text-lg rounded-none transition-all duration-300 w-full md:w-auto">
+                Make an Offer
+            </a>
+        </div>
+    </main>
+
+    <!-- Value Propositions -->
+    <section class="relative z-10 container mx-auto px-6 py-20 border-t border-white/5">
+        <div class="grid md:grid-cols-3 gap-12 text-left">
+            <!-- Feature 1 -->
+            <div class="glass-panel p-8 hover:border-brand-accent/50 transition-colors duration-300">
+                <i class="fa-solid fa-brain text-4xl text-brand-accent mb-6"></i>
+                <h3 class="text-xl font-bold text-white mb-3">AGI Alignment</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    The ultimate domain for platforms dedicated to aligning Artificial General Intelligence with human values through advanced simulation.
+                </p>
+            </div>
             
-            // Animate value cards on scroll
-            const observerOptions = {
-                threshold: 0.2,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe value cards
-            const valueCards = document.querySelectorAll('.value-card');
-            valueCards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                card.style.transitionDelay = (index * 0.1) + 's';
-                observer.observe(card);
-            });
-            
-            // Add floating effect to specific elements
-            const floatingElements = document.querySelectorAll('.floating');
-            floatingElements.forEach(el => {
-                el.style.animationDelay = Math.random() * 2 + 's';
-            });
-            
-            // Email click tracking
-            const emailLink = document.querySelector('.email a');
-            emailLink.addEventListener('click', function() {
-                console.log('Email link clicked - HumanEmulator.ai inquiry');
-            });
-            
-            // CTA button tracking
-            const ctaButton = document.querySelector('.cta-button');
-            ctaButton.addEventListener('click', function() {
-                console.log('CTA button clicked - Initiate acquisition');
-            });
-        });
-    </script>
+            <!-- Feature 2 -->
+            <div class="glass-panel p-8 hover:border-brand-secondary/50 transition-colors duration-300">
+                <i class="fa-solid fa-dna text-4xl text-brand-secondary mb-6"></i>
+                <h3 class="text-xl font-bold text-white mb-3">Digital Twins</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Perfect for medical research, metaverse identity, or biological emulation startups looking for an authoritative web presence.
+                </p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="glass-panel p-8 hover:border-white/50 transition-colors duration-300">
+                <i class="fa-solid fa-vr-cardboard text-4xl text-white mb-6"></i>
+                <h3 class="text-xl font-bold text-white mb-3">Synthetic Data</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    "Human Emulation" is the key to training AI models without privacy violations. Own the category-defining keyword.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="relative z-10 container mx-auto px-6 py-24">
+        <div class="max-w-4xl mx-auto glass-panel p-10 md:p-16 text-center border-brand-accent/20 border">
+            <h2 class="text-3xl font-bold text-white mb-2">Acquisition Details</h2>
+            <p class="text-gray-500 font-mono text-sm mb-12">SECURE THIS ASSET BEFORE THE MARKET MOVES</p>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-left space-y-2">
+                    <p class="text-gray-400 text-sm uppercase tracking-widest">Buy It Now Price</p>
+                    <div class="text-5xl font-bold text-white font-mono">$42,000 <span class="text-lg text-gray-500 font-sans font-normal">USD</span></div>
+                    <p class="text-brand-accent text-sm mt-2"><i class="fa-solid fa-check-circle mr-1"></i> Escrow Secured</p>
+                </div>
+
+                <div class="text-left border-l border-white/10 pl-0 md:pl-12 space-y-4">
+                    <div class="bg-white/5 p-4 rounded border border-white/5">
+                        <p class="text-white font-bold mb-1"><i class="fa-solid fa-layer-group mr-2 text-brand-secondary"></i>Flexible Financing</p>
+                        <p class="text-gray-400 text-sm">
+                            Available in <strong>7 monthly installments</strong> via Spaceship/Escrow. Own the future without upfront capital strain.
+                        </p>
+                    </div>
+                    
+                    <a href="https://www.spaceship.com/s/buy/humanemulator.ai/xSyaoSQ98NTZGEtx" target="_blank" class="block w-full py-3 bg-brand-accent text-black font-bold text-center hover:bg-white transition-colors">
+                        Proceed to Checkout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-white/10 py-12 bg-black">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center opacity-60">
+            <div class="font-mono text-sm">
+                &copy; 2026 HumanEmulator.ai
+            </div>
+            <div class="mt-4 md:mt-0 font-mono text-sm">
+                Contact: <a href="mailto:joshua369x@gmail.com" class="text-brand-accent hover:underline">joshua369x@gmail.com</a>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
