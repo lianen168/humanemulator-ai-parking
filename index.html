@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HumanEmulator.ai | The Interface of Biology & Silicon</title>
-    <meta name="description" content="Premium Domain for Sale. The ultimate brand for AGI, In Silico Trials, Humanoid Robotics, and Synthetic Data.">
+    <title>HumanEmulator.ai | The Cybernetic Interface</title>
+    <meta name="description" content="Premium Domain for Sale. The ultimate brand for AGI, Humanoid Robotics, and Synthetic Biological Data.">
     
     <!-- Fonts & Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <!-- 'Manrope' for modern humanism, 'Space Mono' for code/tech -->
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Orbitron for Sci-Fi Headers, Rajdhani for HUD text -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,34 +18,35 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            bg: '#08080A',
-                            surface: '#121216',
-                            // Human Colors (Warm/Organic)
-                            human_start: '#FF9A9E',
-                            human_end: '#FECFEF',
-                            // Emulator Colors (Cool/Synthetic)
-                            emu_start: '#00F260',
-                            emu_end: '#0575E6',
+                        cyber: {
+                            bg: '#030305',
+                            panel: '#0A0A10',
+                            // Human Gradient Colors (Neon Organic)
+                            h_start: '#FF0055', 
+                            h_end: '#FF5E7E',
+                            // Emulator Gradient Colors (Electric Logic)
+                            e_start: '#00F0FF',
+                            e_end: '#0057FF',
                         }
                     },
                     fontFamily: {
-                        sans: ['Manrope', 'sans-serif'],
-                        mono: ['Space Mono', 'monospace'],
+                        sci: ['Orbitron', 'sans-serif'],
+                        hud: ['Rajdhani', 'sans-serif'],
+                        mono: ['Share Tech Mono', 'monospace'],
                     },
                     animation: {
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'heartbeat': 'heartbeat 3s ease-in-out infinite',
-                        'scan': 'scan 4s linear infinite',
+                        'scan': 'scan 8s linear infinite',
+                        'pulse-glow': 'pulse-glow 3s infinite',
+                        'glitch': 'glitch 1s linear infinite',
                     },
                     keyframes: {
-                        heartbeat: {
-                            '0%, 100%': { opacity: 0.8 },
-                            '50%': { opacity: 1 },
-                        },
                         scan: {
-                            '0%': { backgroundPosition: '0% 50%' },
-                            '100%': { backgroundPosition: '100% 50%' },
+                            '0%': { backgroundPosition: '0% 0%' },
+                            '100%': { backgroundPosition: '0% 100%' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: 1, filter: 'brightness(1)' },
+                            '50%': { opacity: 0.7, filter: 'brightness(1.2)' },
                         }
                     }
                 }
@@ -55,66 +56,78 @@
 
     <style>
         body {
-            background-color: #08080A;
+            background-color: #030305;
             color: #E2E2E2;
             overflow-x: hidden;
         }
 
         /* 
-           THE DUALITY GRADIENTS 
+           THE DUAL GRADIENTS (The Core Visual)
         */
-        .text-human {
-            background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%);
+        .grad-human {
+            background: linear-gradient(to right, #FF0055, #FF5E7E);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(255, 154, 158, 0.3);
+            text-shadow: 0 0 20px rgba(255, 0, 85, 0.4);
         }
 
-        .text-emulator {
-            background: linear-gradient(135deg, #00C6FF 0%, #0072FF 100%);
+        .grad-emulator {
+            background: linear-gradient(to right, #00F0FF, #0057FF);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(0, 198, 255, 0.3);
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
         }
 
-        /* Abstract DNA Background */
-        .dna-bg {
+        /* Sci-Fi Grid Background */
+        .cyber-grid {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
+            inset: 0;
             background-image: 
-                radial-gradient(circle at 15% 50%, rgba(255, 154, 158, 0.08) 0%, transparent 25%),
-                radial-gradient(circle at 85% 50%, rgba(0, 198, 255, 0.08) 0%, transparent 25%);
+                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
             pointer-events: none;
+            z-index: 0;
         }
 
-        /* Glass Cards */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s ease;
+        /* Glass / HUD Panels */
+        .hud-panel {
+            background: rgba(10, 10, 16, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            transition: all 0.3s ease;
         }
-        .glass-card:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.04);
+        
+        /* Tech Corners */
+        .hud-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 10px; height: 10px;
+            border-top: 2px solid #FF0055; /* Human Color */
+            border-left: 2px solid #FF0055;
+            transition: all 0.3s ease;
+        }
+        .hud-panel::after {
+            content: '';
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 10px; height: 10px;
+            border-bottom: 2px solid #00F0FF; /* Emulator Color */
+            border-right: 2px solid #00F0FF;
+            transition: all 0.3s ease;
+        }
+
+        .hud-panel:hover {
+            border-color: rgba(255, 255, 255, 0.2);
             transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(0, 240, 255, 0.15);
         }
+        .hud-panel:hover::before { width: 100%; height: 100%; border-color: rgba(255, 0, 85, 0.2); background: transparent; }
+        .hud-panel:hover::after { width: 100%; height: 100%; border-color: rgba(0, 240, 255, 0.2); background: transparent; }
 
-        /* Visual Separator Line (Gradient) */
-        .split-line {
-            height: 1px;
-            width: 100%;
-            background: linear-gradient(90deg, 
-                rgba(255, 154, 158, 0) 0%, 
-                rgba(255, 154, 158, 0.5) 40%, 
-                rgba(0, 198, 255, 0.5) 60%, 
-                rgba(0, 198, 255, 0) 100%
-            );
-        }
 
         #toast {
             visibility: hidden;
@@ -129,180 +142,178 @@
         }
     </style>
 </head>
-<body class="font-sans flex flex-col min-h-screen">
+<body class="font-hud flex flex-col min-h-screen selection:bg-cyber-e_start selection:text-black">
 
-    <div class="dna-bg"></div>
+    <div class="cyber-grid"></div>
 
     <!-- Nav -->
     <nav class="relative z-50 container mx-auto px-6 py-8 flex justify-between items-center">
-        <div class="text-xl font-bold tracking-wide select-none">
-            <span class="text-human font-extrabold">HUMAN</span><span class="text-white opacity-50 mx-1">/</span><span class="text-emulator font-mono">EMULATOR</span>
-            <span class="text-gray-600 text-sm align-top ml-1">.AI</span>
+        <!-- THE LOGO: NO SLASH, SEPARATE GRADIENTS -->
+        <div class="text-2xl font-sci font-bold tracking-wider cursor-default">
+            <span class="grad-human">HUMAN</span><span class="grad-emulator">EMULATOR</span><span class="text-white/50 text-sm ml-1 font-mono">.AI</span>
         </div>
-        <button onclick="handleEmailClick(event)" class="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 hover:text-white transition-all">
-            Contact
+        
+        <button onclick="handleEmailClick(event)" class="text-xs font-bold uppercase tracking-[0.2em] text-cyber-e_start border border-cyber-e_start/30 px-4 py-2 hover:bg-cyber-e_start hover:text-black transition-all">
+            Initialize Contact
         </button>
     </nav>
 
     <!-- Main Hero -->
     <main class="relative z-10 container mx-auto px-6 pt-20 pb-24 text-center flex-grow">
         
-        <div class="mb-8 flex justify-center items-center gap-3">
-             <span class="w-2 h-2 rounded-full bg-[#FF9A9E] animate-heartbeat"></span>
-             <span class="text-gray-500 text-xs font-mono tracking-widest uppercase">Biological Data</span>
-             <span class="text-gray-700">|</span>
-             <span class="text-gray-500 text-xs font-mono tracking-widest uppercase">Digital Synthesis</span>
-             <span class="w-2 h-2 rounded-full bg-[#00C6FF] animate-pulse"></span>
+        <div class="mb-8 flex justify-center items-center gap-4">
+             <div class="flex items-center gap-2 px-3 py-1 rounded border border-cyber-h_start/30 bg-cyber-h_start/5">
+                 <span class="w-1.5 h-1.5 rounded-full bg-cyber-h_start animate-pulse"></span>
+                 <span class="text-cyber-h_start text-[10px] uppercase tracking-widest font-mono">Bio-Organic</span>
+             </div>
+             <div class="w-8 h-[1px] bg-white/20"></div>
+             <div class="flex items-center gap-2 px-3 py-1 rounded border border-cyber-e_start/30 bg-cyber-e_start/5">
+                 <span class="text-cyber-e_start text-[10px] uppercase tracking-widest font-mono">Silicon-Logic</span>
+                 <span class="w-1.5 h-1.5 rounded-full bg-cyber-e_start animate-pulse"></span>
+             </div>
         </div>
 
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-8 tracking-tight">
-            <span class="block text-human">HUMAN</span>
-            <span class="block text-emulator font-mono -mt-2 md:-mt-4">EMULATOR</span>
+        <!-- GIANT HERO TITLE -->
+        <h1 class="text-5xl md:text-7xl lg:text-9xl font-sci font-black leading-none mb-8 tracking-tighter">
+            <span class="block md:inline-block grad-human hover:scale-105 transition-transform duration-500 cursor-default">HUMAN</span>
+            <span class="block md:inline-block grad-emulator hover:scale-105 transition-transform duration-500 cursor-default">EMULATOR</span>
         </h1>
 
         <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 font-light">
-            The defining infrastructure for simulating <span class="text-[#FF9A9E]">human cognition</span> within <span class="text-[#00C6FF]">silicon environments</span>.
+            The defining infrastructure for simulating <span class="text-white font-medium">cognition</span> within <span class="text-white font-medium">digital environments</span>.
         </p>
 
         <!-- CTA Buttons -->
         <div class="flex flex-col md:flex-row justify-center gap-6 relative z-20">
             <a href="https://www.afternic.com/domain/humanemulator.ai" target="_blank" 
-               class="group px-10 py-4 bg-white text-black font-bold rounded-none hover:scale-105 transition-transform duration-300 shadow-[0_0_30px_rgba(255,255,255,0.1)] flex items-center justify-center gap-3">
-                <span>Acquire Asset</span>
-                <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+               class="group px-10 py-4 bg-white text-black font-sci font-bold text-lg clip-path-polygon hover:bg-cyber-e_start transition-all duration-300 shadow-[0_0_30px_rgba(0,240,255,0.2)]">
+                Acquire Asset
             </a>
             <button onclick="handleEmailClick(event)" 
-               class="px-10 py-4 border border-white/20 bg-white/5 text-white font-medium rounded-none hover:bg-white/10 transition-all duration-300 backdrop-blur-md">
-                Make an Offer
+               class="px-10 py-4 border border-white/20 bg-white/5 text-white font-sci font-bold text-lg hover:border-cyber-h_start hover:text-cyber-h_start transition-all duration-300 backdrop-blur-md">
+                Make Offer
             </button>
         </div>
     </main>
 
-    <!-- The 6 Use Cases Grid (3 Columns x 2 Rows) -->
-    <section class="relative z-10 container mx-auto px-6 py-20 bg-[#0A0A0E]/80 border-t border-white/5">
-        <div class="mb-12 text-center">
-            <h3 class="text-gray-500 text-xs uppercase tracking-[0.3em] mb-2">Deployed Industries</h3>
-            <div class="mx-auto w-24 h-[1px] bg-gradient-to-r from-[#FF9A9E] to-[#00C6FF]"></div>
-        </div>
-
+    <!-- The 6 Use Cases Grid (3x2) -->
+    <section class="relative z-10 container mx-auto px-6 py-20 border-t border-white/5 bg-[#050508]/50">
         <div class="grid md:grid-cols-3 gap-6">
             
-            <!-- 1. AGI Alignment (Top Tier) -->
-            <div class="glass-card p-8 group">
-                <div class="flex justify-between items-start mb-4">
-                    <i class="fa-solid fa-brain text-3xl text-gray-300 group-hover:text-[#FF9A9E] transition-colors"></i>
-                    <span class="text-xs font-mono text-gray-600">01</span>
+            <!-- 1. AGI (Human + Emu) -->
+            <div class="hud-panel p-8 group">
+                <div class="flex justify-between items-start mb-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                    <i class="fa-solid fa-brain text-3xl text-cyber-h_start"></i>
+                    <i class="fa-solid fa-microchip text-xl text-cyber-e_start ml-2"></i>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-2">AGI Training & Alignment</h3>
+                <h3 class="text-xl font-sci font-bold text-white mb-2">AGI Alignment</h3>
                 <p class="text-gray-400 text-sm leading-relaxed">
-                    Simulating human values and irrationality to train safer Artificial General Intelligence models.
+                    Simulating human irrationality to train safer Artificial General Intelligence models.
                 </p>
             </div>
 
-            <!-- 2. Humanoid Robotics -->
-            <div class="glass-card p-8 group">
-                <div class="flex justify-between items-start mb-4">
-                    <i class="fa-solid fa-robot text-3xl text-gray-300 group-hover:text-[#00C6FF] transition-colors"></i>
-                    <span class="text-xs font-mono text-gray-600">02</span>
+            <!-- 2. Robotics (Emu focus) -->
+            <div class="hud-panel p-8 group">
+                <div class="flex justify-between items-start mb-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                    <i class="fa-solid fa-robot text-3xl text-cyber-e_start"></i>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-2">Humanoid Robotics</h3>
+                <h3 class="text-xl font-sci font-bold text-white mb-2">Humanoid Robotics</h3>
                 <p class="text-gray-400 text-sm leading-relaxed">
-                    The software "soul" for the next generation of androids (Tesla Optimus, Figure, etc.).
+                    The software "soul" for the next generation of androids (Tesla Optimus, Figure).
                 </p>
             </div>
 
-            <!-- 3. In Silico Medicine -->
-            <div class="glass-card p-8 group">
-                <div class="flex justify-between items-start mb-4">
-                    <i class="fa-solid fa-dna text-3xl text-gray-300 group-hover:text-[#FF9A9E] transition-colors"></i>
-                    <span class="text-xs font-mono text-gray-600">03</span>
+            <!-- 3. Medicine (Human focus) -->
+            <div class="hud-panel p-8 group">
+                <div class="flex justify-between items-start mb-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                    <i class="fa-solid fa-dna text-3xl text-cyber-h_start"></i>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-2">In Silico Clinical Trials</h3>
+                <h3 class="text-xl font-sci font-bold text-white mb-2">In Silico Trials</h3>
                 <p class="text-gray-400 text-sm leading-relaxed">
-                    Emulating human biological responses to test drugs virtually, reducing risk and time.
+                    Emulating biological responses to test drugs virtually, reducing clinical risk.
                 </p>
             </div>
 
-            <!-- 4. Synthetic Data -->
-            <div class="glass-card p-8 group">
-                <div class="flex justify-between items-start mb-4">
-                    <i class="fa-solid fa-database text-3xl text-gray-300 group-hover:text-[#00C6FF] transition-colors"></i>
-                    <span class="text-xs font-mono text-gray-600">04</span>
+            <!-- 4. Synthetic Data (Emu focus) -->
+            <div class="hud-panel p-8 group">
+                <div class="flex justify-between items-start mb-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                    <i class="fa-solid fa-database text-3xl text-cyber-e_start"></i>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-2">Synthetic User Data</h3>
+                <h3 class="text-xl font-sci font-bold text-white mb-2">Synthetic Data</h3>
                 <p class="text-gray-400 text-sm leading-relaxed">
-                    Generating privacy-compliant "human" datasets for training algorithms without GDPR breaches.
+                    Generating privacy-compliant "human" datasets without GDPR breaches.
                 </p>
             </div>
 
-            <!-- 5. UX & Social Sim -->
-            <div class="glass-card p-8 group">
-                <div class="flex justify-between items-start mb-4">
-                    <i class="fa-solid fa-users-viewfinder text-3xl text-gray-300 group-hover:text-[#FF9A9E] transition-colors"></i>
-                    <span class="text-xs font-mono text-gray-600">05</span>
+            <!-- 5. Simulation (Human focus) -->
+            <div class="hud-panel p-8 group">
+                <div class="flex justify-between items-start mb-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                    <i class="fa-solid fa-users-viewfinder text-3xl text-cyber-h_start"></i>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-2">UX & Social Simulation</h3>
+                <h3 class="text-xl font-sci font-bold text-white mb-2">Social Simulation</h3>
                 <p class="text-gray-400 text-sm leading-relaxed">
-                    AI agents that act as testers for software UIs or simulate economic/social policy outcomes.
+                    AI agents that emulate population behavior for economic or policy testing.
                 </p>
             </div>
 
-            <!-- 6. Cybersecurity -->
-            <div class="glass-card p-8 group">
-                <div class="flex justify-between items-start mb-4">
-                    <i class="fa-solid fa-user-shield text-3xl text-gray-300 group-hover:text-[#00C6FF] transition-colors"></i>
-                    <span class="text-xs font-mono text-gray-600">06</span>
+            <!-- 6. Security (Mixed) -->
+            <div class="hud-panel p-8 group">
+                <div class="flex justify-between items-start mb-4 opacity-50 group-hover:opacity-100 transition-opacity">
+                    <i class="fa-solid fa-user-shield text-3xl text-white"></i>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-2">Human Error Simulation</h3>
+                <h3 class="text-xl font-sci font-bold text-white mb-2">Cyber Defense</h3>
                 <p class="text-gray-400 text-sm leading-relaxed">
-                    Emulating human psychological vulnerabilities to build better cybersecurity defenses.
+                    Emulating human error patterns to build resilient cybersecurity systems.
                 </p>
             </div>
 
         </div>
     </section>
 
-    <!-- Pricing Section -->
+    <!-- Pricing / Terminal Section -->
     <section class="relative z-10 container mx-auto px-6 py-24">
-        <div class="max-w-4xl mx-auto glass-card p-10 md:p-16 text-center border-t border-white/10 relative overflow-hidden">
-            
-            <h2 class="text-3xl font-bold text-white mb-2 relative z-10">Valuation & Acquisition</h2>
-            <p class="text-gray-500 text-xs font-bold uppercase tracking-widest mb-12 relative z-10">Secure the Category Killer</p>
+        <div class="max-w-4xl mx-auto border border-gray-800 bg-[#08080A] p-1 font-mono text-sm shadow-2xl relative">
+            <!-- Top Label -->
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#030305] px-4 text-cyber-e_start text-xs border border-cyber-e_start/50">
+                TRANSACTION_TERMINAL
+            </div>
 
-            <div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
-                <div class="text-left space-y-1">
-                    <p class="text-gray-500 text-xs uppercase tracking-widest">Buy It Now</p>
-                    <div class="text-5xl font-bold text-white tracking-tighter font-mono">$36,900</div>
-                    <div class="flex items-center gap-2 mt-2">
-                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                        <p class="text-gray-400 text-xs">Instant Transfer</p>
+            <div class="p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-12">
+                
+                <!-- Price -->
+                <div class="text-center md:text-left">
+                    <p class="text-gray-500 text-xs mb-2">ASKING PRICE (USD)</p>
+                    <div class="text-6xl font-bold text-white tracking-tighter">$36,900</div>
+                    <div class="flex items-center gap-2 mt-2 justify-center md:justify-start">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        <span class="text-green-500 text-xs">STATUS: AVAILABLE</span>
                     </div>
                 </div>
 
-                <div class="text-left bg-white/5 p-6 border border-white/5">
+                <!-- Terms -->
+                <div class="w-full md:w-auto bg-white/5 border border-white/10 p-6 rounded-sm max-w-sm">
                     <div class="flex items-start gap-4">
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white shrink-0">
-                            <i class="fa-solid fa-chart-pie"></i>
-                        </div>
+                        <i class="fa-solid fa-layer-group text-2xl text-cyber-e_start mt-1"></i>
                         <div>
-                            <p class="text-white font-bold mb-1">Flexible Financing</p>
-                            <p class="text-gray-400 text-sm mb-4">
-                                Strategic acquisition available with <strong>12-month installment plan</strong> via Afternic.
+                            <p class="text-white font-bold mb-1 font-sci">12-Month Plan</p>
+                            <p class="text-gray-400 text-xs mb-4">
+                                Strategic acquisition available with extended financing options via Afternic.
                             </p>
-                            <a href="https://www.afternic.com/domain/humanemulator.ai" target="_blank" class="text-[#00C6FF] hover:text-white text-sm font-bold flex items-center gap-2 transition-colors">
-                                Review Terms <i class="fa-solid fa-arrow-right"></i>
+                            <a href="https://www.afternic.com/domain/humanemulator.ai" target="_blank" class="block text-center bg-cyber-e_start/10 border border-cyber-e_start text-cyber-e_start py-2 hover:bg-cyber-e_start hover:text-black transition-colors font-bold text-xs uppercase">
+                                Initiate Purchase
                             </a>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="relative z-10 border-t border-white/5 py-12 bg-black mt-auto">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center opacity-50 text-xs tracking-widest">
-            <div class="font-mono">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center opacity-40 text-xs tracking-widest font-mono">
+            <div>
                 &copy; 2026 HUMANEMULATOR.AI
             </div>
             <div class="mt-4 md:mt-0">
@@ -312,9 +323,9 @@
     </footer>
 
     <!-- Toast -->
-    <div id="toast" class="fixed bottom-10 left-1/2 bg-white text-black px-8 py-4 rounded-full shadow-[0_0_50px_rgba(255,255,255,0.2)] z-50 flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300">
-        <i class="fa-solid fa-check-circle text-[#00C6FF]"></i>
-        <span class="font-bold text-sm">Email copied to clipboard</span>
+    <div id="toast" class="fixed bottom-10 left-1/2 bg-white text-black px-8 py-4 border-l-4 border-cyber-h_start shadow-[0_0_50px_rgba(255,0,85,0.2)] z-50 flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 font-mono text-xs">
+        <i class="fa-solid fa-terminal"></i>
+        <span class="font-bold">CONTACT INFO COPIED</span>
     </div>
 
     <!-- Scripts -->
@@ -338,9 +349,13 @@
         function showToast() {
             const toast = document.getElementById("toast");
             toast.className += " show";
+            // Simple animation class logic would go here or just toggle opacity/transform
+            toast.style.transform = "translate(-50%, 0)";
+            toast.style.opacity = "1";
             
             setTimeout(() => {
-                toast.className = toast.className.replace(" show", "");
+                toast.style.transform = "translate(-50%, 20px)";
+                toast.style.opacity = "0";
             }, 3000);
         }
     </script>
